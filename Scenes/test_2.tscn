@@ -1,0 +1,67 @@
+[gd_scene load_steps=7 format=3 uid="uid://w0kj04s3npa0"]
+
+[ext_resource type="Texture2D" uid="uid://b8hhrfxe7sr1r" path="res://icon.svg" id="1_fo3s5"]
+[ext_resource type="Script" uid="uid://026gfoemniby" path="res://Scripts/character_body_2d.gd" id="2_uw635"]
+[ext_resource type="Script" uid="uid://cma673q153en6" path="res://Scripts/camera_follow.gd" id="3_1atck"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ys1qc"]
+size = Vector2(1920, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_35xla"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qc4db"]
+size = Vector2(128, 128)
+
+[node name="Test2" type="Node"]
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="Floor" type="StaticBody2D" parent="World"]
+position = Vector2(960, 600)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Floor"]
+shape = SubResource("RectangleShape2D_ys1qc")
+
+[node name="Sprite2D" type="Sprite2D" parent="World/Floor"]
+scale = Vector2(15, 0.155)
+texture = ExtResource("1_fo3s5")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="World"]
+position = Vector2(494, 414)
+script = ExtResource("2_uw635")
+jump_height = 150.0
+gravity = 500.0
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/CharacterBody2D"]
+shape = SubResource("RectangleShape2D_35xla")
+
+[node name="Sprite2D" type="Sprite2D" parent="World/CharacterBody2D"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_fo3s5")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="World"]
+position = Vector2(683, 442)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/StaticBody2D"]
+shape = SubResource("RectangleShape2D_qc4db")
+
+[node name="Sprite2D" type="Sprite2D" parent="World/StaticBody2D"]
+texture = ExtResource("1_fo3s5")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="World"]
+position = Vector2(896, 525)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/StaticBody2D2"]
+shape = SubResource("RectangleShape2D_qc4db")
+
+[node name="Sprite2D" type="Sprite2D" parent="World/StaticBody2D2"]
+texture = ExtResource("1_fo3s5")
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("3_1atck")
+target = NodePath("../World/CharacterBody2D")
