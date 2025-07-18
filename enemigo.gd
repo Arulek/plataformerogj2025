@@ -1,10 +1,9 @@
 extends CharacterBody2D
 
-
 @export var speed: float = 200.0
 @export var jump_height: float = 200
 @export var gravity: float = 20.0
-
+var moveleft: bool =  true
 
 func _ready() -> void:
 	pass
@@ -19,13 +18,12 @@ func _physics_process(_delta: float) -> void:
 
 
 func movement(_delta) -> void:
-	if Input.is_action_pressed("MoveLeft"):
+	if is_on_wall():
+		moveleft=not moveleft
+	if moveleft:
 		velocity.x = -speed
-	elif Input.is_action_pressed("MoveRight"):
-		velocity.x = speed
 	else:
-		velocity.x = 0
-
+		velocity.x = speed
 
 
 	# Apply gravity
@@ -33,9 +31,4 @@ func movement(_delta) -> void:
 		velocity.y += gravity * _delta
 	else:
 		velocity.y = 0  # Reset vertical velocity when on the floor
-	if Input.is_action_just_pressed("Jump") and is_on_floor():
-		var jump_velocity = sqrt(2 * jump_height * gravity)  # Calculate jump velocity
-		print("Jumping with velocity: ", jump_velocity)
-		velocity.y = -jump_velocity
-
 	move_and_slide()  # Move the character with sliding behavior

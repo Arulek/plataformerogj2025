@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://glirrlyc3bvi"]
+
+[ext_resource type="Script" uid="uid://bi3ney3hjkn8m" path="res://enemigo.gd" id="1_77u8p"]
+[ext_resource type="Texture2D" uid="uid://b8hhrfxe7sr1r" path="res://icon.svg" id="2_41h6b"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c42bv"]
+radius = 63.0
+height = 130.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_77u8p"]
+size = Vector2(5, 109)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_41h6b"]
+size = Vector2(103, 4)
+
+[node name="enemigo" type="CharacterBody2D"]
+script = ExtResource("1_77u8p")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_41h6b")
+
+[node name="cuerpo" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_c42bv")
+
+[node name="LadoDer" type="CollisionShape2D" parent="."]
+position = Vector2(60.5, -0.5)
+shape = SubResource("RectangleShape2D_77u8p")
+
+[node name="LadoIzq" type="CollisionShape2D" parent="."]
+position = Vector2(-61, 0)
+shape = SubResource("RectangleShape2D_77u8p")
+
+[node name="cabeza" type="CollisionShape2D" parent="."]
+position = Vector2(0, -62)
+shape = SubResource("RectangleShape2D_41h6b")
