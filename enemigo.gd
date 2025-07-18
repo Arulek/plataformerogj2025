@@ -32,3 +32,9 @@ func movement(_delta) -> void:
 	else:
 		velocity.y = 0  # Reset vertical velocity when on the floor
 	move_and_slide()  # Move the character with sliding behavior
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	call_deferred("destruir")
+	pass # Replace with function body.
+func destruir():
+	queue_free()

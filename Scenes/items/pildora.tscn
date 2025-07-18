@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://c50p31aj7tr7l"]
+
+[ext_resource type="Texture2D" uid="uid://b8hhrfxe7sr1r" path="res://icon.svg" id="1_4oclb"]
+[ext_resource type="Script" uid="uid://oscplgvbefqg" path="res://Scenes/items/pildora.gd" id="1_rcacd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rcacd"]
+radius = 7.07107
+
+[node name="pildora" type="RigidBody2D"]
+script = ExtResource("1_rcacd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.109375, 0.109375)
+texture = ExtResource("1_4oclb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rcacd")
