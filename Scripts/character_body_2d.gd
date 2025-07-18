@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var jump_height: float = 200
 @export var gravity: float = 20.0
 
+
 func _ready() -> void:
     pass
 
