@@ -19,6 +19,8 @@ func _physics_process(_delta: float) -> void:
 func movement(_delta) -> void:
 	if Input.is_action_pressed("MoveLeft"):
 		velocity.x = -speed
+		$AnimatedSprite2D.flip_h
+		$AnimatedSprite2D.play("caminar")
 	elif Input.is_action_pressed("MoveRight"):
 		velocity.x = speed
 	else:
