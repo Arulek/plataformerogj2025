@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var jump_height: float = 200
 @export var gravity: float = 20.0
 var vida: int = 6
+var atacar: bool = false
 
 func _ready() -> void:
 	pass
@@ -17,14 +18,23 @@ func _physics_process(_delta: float) -> void:
 
 
 func movement(_delta) -> void:
-	if Input.is_action_pressed("MoveLeft"):
-		velocity.x = -speed
-		$AnimatedSprite2D.flip_h
-		$AnimatedSprite2D.play("caminar")
-	elif Input.is_action_pressed("MoveRight"):
-		velocity.x = speed
-	else:
-		velocity.x = 0
+	if not atacar:
+		if Input.is_action_pressed("MoveLeft"):
+			velocity.x = -speed
+			$AnimatedSprite2D.flip_h
+			$AnimatedSprite2D.play("caminar")
+		elif Input.is_action_pressed("MoveRight"):
+			velocity.x = speed
+		else:
+			velocity.x = 0
+			$AnimatedSprite2D.play("quieto")
+		if Input.is_action_just_pressed("atacar"):
+			atacar= true
+	else: 
+		#animacion de atacar
+		$AnimatedSprite2D.play("atacar")
+		await ($AnimatedSprite2D.animation_finished)
+		atacar = false
 
 
 

@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://405fxpa8novc"]
+
+[ext_resource type="Texture2D" uid="uid://bl01fc115a3hh" path="res://Scenes/niveles/pared hospital.jpg" id="1_m7468"]
+[ext_resource type="PackedScene" uid="uid://e3l0bhroc6kp" path="res://Scenes/personaje/personaje.tscn" id="2_mydkg"]
+[ext_resource type="PackedScene" uid="uid://glirrlyc3bvi" path="res://Scenes/enemigos/enemigo.tscn" id="3_mydkg"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_cgjf6"]
+a = Vector2(392, -80)
+b = Vector2(-369, -80)
+
+[node name="Hospital" type="Node2D"]
+
+[node name="ParedHospital" type="Sprite2D" parent="."]
+position = Vector2(12, -222)
+texture = ExtResource("1_m7468")
+
+[node name="personaje" parent="." instance=ExtResource("2_mydkg")]
+position = Vector2(-294, -120)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("SegmentShape2D_cgjf6")
+
+[node name="enemigo" parent="." instance=ExtResource("3_mydkg")]
+position = Vector2(-34, -124)

@@ -20,10 +20,14 @@ func _physics_process(_delta: float) -> void:
 func movement(_delta) -> void:
 	if is_on_wall():
 		moveleft=not moveleft
+		
 	if moveleft:
 		velocity.x = -speed
+		$AnimatedSprite2D.flip_h
+		$AnimatedSprite2D.play("caminar")
 	else:
 		velocity.x = speed
+		$AnimatedSprite2D.play("caminar")
 
 
 	# Apply gravity
@@ -34,7 +38,8 @@ func movement(_delta) -> void:
 	move_and_slide()  # Move the character with sliding behavior
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	call_deferred("destruir")
+	if body.is_in_group("Player"):
+		call_deferred("destruir")
 	pass # Replace with function body.
 func destruir():
 	queue_free()
