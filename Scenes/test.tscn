@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://026gfoemniby" path="res://Scripts/character_body_2d.gd" id="2_qc4db"]
 [ext_resource type="PackedScene" uid="uid://glirrlyc3bvi" path="res://Scenes/enemigos/enemigo.tscn" id="3_i3aeo"]
 [ext_resource type="Script" uid="uid://cma673q153en6" path="res://Scripts/camera_follow.gd" id="3_qc4db"]
-[ext_resource type="PackedScene" uid="uid://doj2uf0iawur" path="res://Scenes/power_up_speed.tscn" id="4_5wyu1"]
+[ext_resource type="PackedScene" path="res://Scenes/power_up_jump.tscn" id="4_5wyu1"]
 [ext_resource type="Script" uid="uid://bui2lmxnc4gci" path="res://Scripts/change_scene.gd" id="4_35xla"]
 [ext_resource type="PackedScene" uid="uid://w0kj04s3npa0" path="res://Scenes/test_2.tscn" id="5_i3aeo"]
 
