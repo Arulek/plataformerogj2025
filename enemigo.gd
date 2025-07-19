@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@export var powerup_scene: PackedScene
 @export var speed: float = 200.0
 @export var jump_height: float = 200
 @export var gravity: float = 20.0
@@ -41,5 +42,10 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		call_deferred("destruir")
 	pass # Replace with function body.
+
 func destruir():
+	if powerup_scene:
+		var powerup = powerup_scene.instantiate()
+		get_parent().add_child(powerup)
+		powerup.global_position = global_position
 	queue_free()

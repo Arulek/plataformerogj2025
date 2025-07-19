@@ -5,8 +5,15 @@ extends CharacterBody2D
 @export var jump_height: float = 200
 @export var gravity: float = 20.0
 
+var base_speed: float = 300.0
+var base_jump: float = 400.0
+var powerup_timer: Timer
 
 func _ready() -> void:
+	powerup_timer = Timer.new()
+	powerup_timer.one_shot = true
+	add_child(powerup_timer)
+	powerup_timer.connect("timeout", Callable(self, "reset_powerup"))
 	pass
 
 func _process(_delta: float) -> void:
@@ -25,9 +32,7 @@ func movement(_delta) -> void:
 		velocity.x = speed
 	else:
 		velocity.x = 0
-
-
-
+	
 	# Apply gravity
 	if not is_on_floor():
 		velocity.y += gravity * _delta
@@ -39,3 +44,12 @@ func movement(_delta) -> void:
 		velocity.y = -jump_velocity
 
 	move_and_slide()  # Move the character with sliding behavior
+	
+func apply_powerup(speed_boost: float, jump_boost: float, duration: float):
+	speed += speed_boost
+	jump_height += jump_boost
+	powerup_timer.start(duration)
+	
+func reset_powerup():
+	speed = base_speed
+	jump_height = base_jump
